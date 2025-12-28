@@ -23,7 +23,7 @@ const RestaurantMenu = () => {
         <div className="min-h-screen bg-gray-50 py-8 px-4">
             <div className="max-w-3xl mx-auto">
                 {/* Restaurant Header */}
-                <div className="bg-white shadow-sm p-6 mb-6">
+                <div className="bg-gray-100 border border-gray-300 rounded-lg shadow-sm p-6 mb-6">
                     <h1 className="text-2xl font-bold text-gray-800 mb-3">{menuData.restaurant?.name}</h1>
                     <div className="flex items-center gap-3 text-sm mb-2">
                         <span className="font-semibold" style={{color: '#48c479'}}>

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "./UserContext";
 
 const RestaurantCard = ({ res }) => {
+    const { loggedInUser } = useContext(UserContext);
     if (!res) return null;
     const name = res?.name || "Restaurant";
     const rating = res?.avgRating ?? res?.avgRatingString ?? "-";
@@ -11,7 +14,7 @@ const RestaurantCard = ({ res }) => {
 
     return (
         <Link to={`/restaurants/${res.id}`} className="block group">
-            <div className="bg-white hover:shadow-lg transition-shadow duration-200">
+            <div className="bg-gray-100 border border-gray-300 rounded-lg hover:shadow-md transition-shadow duration-200">
                 <div className="relative h-44 overflow-hidden">
                     {res?.promoted && (
                         <div className="absolute top-0 left-0 z-20 pointer-events-none">
@@ -44,6 +47,7 @@ const RestaurantCard = ({ res }) => {
                     </div>
                     <p className="text-gray-500 text-sm truncate mb-1">{cuisines.length ? cuisines.join(", ") : "Various Cuisines"}</p>
                     <p className="text-gray-600 text-sm font-medium">{costForTwo}</p>
+                    <p className="text-gray-600 text-sm">User: {loggedInUser}</p>
                 </div>
             </div>
         </Link>

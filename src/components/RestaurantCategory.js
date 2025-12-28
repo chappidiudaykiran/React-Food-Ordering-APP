@@ -4,10 +4,10 @@ const RestaurantCategory = ({ category, isOpen, onToggle }) => {
   if (!category) return null;
 
   return (
-    <div className="bg-white shadow-sm mb-4">
+    <div className="bg-gray-100 border border-gray-300 shadow-sm mb-4 rounded">
       <button
         type="button"
-        className="w-full flex items-center justify-between p-4 border-b hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between p-4 border-b hover:bg-gray-200 transition-colors"
         onClick={onToggle}
         aria-expanded={Boolean(isOpen)}
       >

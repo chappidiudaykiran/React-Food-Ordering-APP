@@ -1,14 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { MOCK_RESTAURANTS } from "../utils/mockData";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "./UserContext";
 
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [searchUsername, setSearchUsername] = useState("");
+  const { setUserName } = useContext(UserContext);
+
+  const handleUsernameUpdate = () => {
+    if (searchUsername.trim()) {
+      setUserName(searchUsername);
+      setSearchUsername("");
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -42,7 +52,7 @@ const Body = () => {
     <div className="min-h-screen bg-gray-50 px-6 py-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-wrap gap-4 items-center justify-between mb-8">
-          <div className="flex gap-3 flex-1 min-w-[300px]">
+          <div className="flex gap-3 flex-1 min-w-[400px] items-center">
             <input 
               type="text" 
               placeholder="Search for restaurants and food" 
@@ -67,6 +77,20 @@ const Body = () => {
               }}
             >
               Search
+            </button>
+            <input 
+              type="text" 
+              placeholder="Update Username"
+              value={searchUsername}
+              onChange={(e) => setSearchUsername(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleUsernameUpdate()}
+              className="px-5 py-3 border border-gray-300 focus:outline-none focus:border-[#fc8019] transition-colors text-gray-700 placeholder-gray-400" 
+            />
+            <button 
+              onClick={handleUsernameUpdate}
+              className="px-6 py-3 bg-[#fc8019] text-white font-semibold hover:bg-[#e87316] transition-colors"
+            >
+              Update User
             </button>
           </div>
           <button
