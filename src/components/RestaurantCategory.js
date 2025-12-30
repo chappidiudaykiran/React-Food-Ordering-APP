@@ -1,7 +1,13 @@
-import React from "react";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 const RestaurantCategory = ({ category, isOpen, onToggle }) => {
   if (!category) return null;
+
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  }
+
 
   return (
     <div className="bg-gray-100 border border-gray-300 shadow-sm mb-4 rounded">
@@ -63,8 +69,9 @@ const RestaurantCategory = ({ category, isOpen, onToggle }) => {
                     No image
                   </div>
                 )}
-                <button className="w-full px-4 py-2 border border-gray-300 text-[#fc8019] font-semibold hover:bg-gray-50 transition-colors text-sm uppercase rounded">
-                  Add
+                <button className="w-full px-4 py-2 bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors text-sm uppercase rounded shadow-md cursor-pointer"
+                  onClick={() => handleAddItem(item)}>
+                Add to Cart
                 </button>
               </div>
             </div>
